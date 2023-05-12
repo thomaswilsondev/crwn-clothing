@@ -1,43 +1,14 @@
-import Directory from "../../components/directory/directory.component";
 import { Outlet } from "react-router-dom";
-const categories = [
-  {
-    id: 1,
-    title: "Jackets",
-    imageUrl:
-      "https://images.unsplash.com/photo-1580051215498-3e2b858651b8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80",
-  },
-  {
-    id: 2,
-    title: "Mens",
-    imageUrl:
-      "https://images.unsplash.com/photo-1488161628813-04466f872be2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80",
-  },
-  {
-    id: 3,
-    title: "Womens",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494588024300-e9df7ff98d78?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&q=80",
-  },
-  {
-    id: 4,
-    title: "Sneakers",
-    imageUrl:
-      "https://images.unsplash.com/photo-1618677831708-0e7fda3148b4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-  },
-  {
-    id: 5,
-    title: "Hats",
-    imageUrl:
-      "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
-  },
-];
+
+import Directory from "../../components/directory/directory.component";
+
 const Home = () => {
   return (
-    <>
+    <div>
+      <Directory />
       <Outlet />
-      <Directory categories={categories} />
-    </>
+    </div>
   );
 };
+
 export default Home;
