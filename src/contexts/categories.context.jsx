@@ -6,7 +6,6 @@ import {
 import SHOP_DATA from "../shop-data.js";
 
 // set up create context
-
 export const CategoriesContext = createContext({
   categoriesMap: {},
 });
