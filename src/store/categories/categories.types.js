@@ -1,4 +1,5 @@
-// Define an object that contains constants for action types related to categories
 export const CATEGORIES_ACTION_TYPES = {
-  SET_CATEGORIES: "category/SET_CATEGORIES", // Action type for setting the categories array
+  FETCH_CATEGORIES_START: "category/FETCH_CATEGORIES_START",
+  FETCH_CATEGORIES_SUCCESS: "category/FETCH_CATEGORIES_SUCCESS",
+  FETCH_CATEGORIES_FAILED: "category/FETCH_CATEGORIES_FAILED",
 };

@@ -3,7 +3,26 @@ import { CATEGORIES_ACTION_TYPES } from "./categories.types";
 
 // Import a utility function for creating actions
 import { createAction } from "../../utils/reducer/reducer.utils";
+import { getCategoriesAndDocuments } from "../../utils/firebase/firebase.utils";
 
-// Define an action creator function that returns an action object with a payload of categoriesArray
-export const setCategories = (categoriesArray) =>
-  createAction(CATEGORIES_ACTION_TYPES.SET_CATEGORIES, categoriesArray);
+export const fetchCategoriesStart = () =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
+
+export const fetchCategoriesSuccess = (categoriesArray) =>
+  createAction(
+    CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS,
+    categoriesArray
+  );
+
+export const fetchCategoriesFailure = (error) =>
+  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
+
+export const fetchCategoriesStartAsync = () => async (dispatch) => {
+  dispatch(fetchCategoriesStart());
+  try {
+    const categoriesArray = await getCategoriesAndDocuments("categories");
+    dispatch(fetchCategoriesSuccess(categoriesArray));
+  } catch (error) {
+    dispatch(fetchCategoriesFailure(error));
+  }
+};
