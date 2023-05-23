@@ -4,8 +4,8 @@ import Button from "../button/button.component";
 
 export const CartDropdownContainer = styled.div`
   position: absolute;
-  width: 310px;
-  height: 400px;
+  width: 350px;
+  height: 550px;
   display: flex;
   flex-direction: column;
   padding: 20px;
@@ -26,7 +26,6 @@ export const EmptyMessage = styled.span`
 `;
 
 export const CartItems = styled.div`
-  height: 300px;
   display: flex;
   flex-direction: column;
   overflow: auto;

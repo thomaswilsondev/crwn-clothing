@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 export const DirectoryContainer = styled.div`
   width: 100%;
+  height: 85vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  padding: 20px 40px;
+  padding: 20px 30px;
   .element-2 {
     grid-column: 2/-1;
   }

@@ -2,15 +2,17 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const NavigationContainer = styled.nav`
-  height: 85px;
+  height: 9vh;
   width: 100%;
   display: flex;
   justify-content: space-between;
+  font-family: "Open Sans", sans-serif;
+
   position: sticky;
   top: 0;
   left: 0;
   z-index: 4;
-  background-color: #a4bc92;
+  background-color: #f8e8ee;
 `;
 
 export const LogoContainer = styled(Link)`
@@ -27,6 +29,7 @@ export const NavLinks = styled.div`
   width: 50%;
   height: 100%;
   display: flex;
+  gap: 10px;
   align-items: center;
   justify-content: flex-end;
   margin-right: 35px;
@@ -34,28 +37,16 @@ export const NavLinks = styled.div`
 
 export const NavLink = styled(Link)`
   color: #000;
-  font-size: 18px;
+  font-size: "1rem" 
   padding: 10px 15px;
   cursor: pointer;
   font-weight: 700;
   margin: 15px;
   transition: all 0.3s;
+  color:#495057;
 
-  &:last-child {
-    color: #fff;
-    border: 1px solid #444;
-    padding: 10px 25px;
-    background-color: #125c13;
-    margin-right: 0px;
-    border-radius: 30px;
-
-    &:hover {
-      background-color: #3e7c17;
-      color: #222;
-    }
-  }
 
   &:hover {
-    color: #444;
+    color: #212529;
   }
 `;

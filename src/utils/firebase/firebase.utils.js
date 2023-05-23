@@ -1,4 +1,3 @@
-// Import Firebase modules
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -33,26 +32,20 @@ const firebaseConfig = {
 };
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Create a GoogleAuthProvider instance and set custom parameters
 const googleProvider = new GoogleAuthProvider();
 
 googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-// Export Firebase authentication and database instances
 export const auth = getAuth();
-export const db = getFirestore();
-
-// Export function for signing in with Google using a popup
 export const signInWithGooglePopup = () =>
   signInWithPopup(auth, googleProvider);
-
-// Export function for signing in with Google using a redirect
 export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
-// Export function for adding a collection of documents to the database
+export const db = getFirestore();
+
 export const addCollectionAndDocuments = async (
   collectionKey,
   objectsToAdd,
@@ -70,17 +63,14 @@ export const addCollectionAndDocuments = async (
   console.log("done");
 };
 
-// Export function for getting all documents in a "categories" collection from the database
 export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
-  //Check error
-  // await Promise.reject(new Error("new error woops"));
+
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
-// Export function for creating a user document in the "users" collection when a new user signs up
 export const createUserDocumentFromAuth = async (
   userAuth,
   additionalInformation = {}
@@ -107,26 +97,35 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return userDocRef;
+  return userSnapshot;
 };
 
-// Export function for creating a new user with an email and password
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-// Export function for signing in an existing user with an email and password
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
 };
 
-// Export function for signing out the current user
 export const signOutUser = async () => await signOut(auth);
 
-// Export function that listens for changes to the authentication state and invokes a callback with the user object when the state changes
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    );
+  });
+};
