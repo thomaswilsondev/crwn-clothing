@@ -11,9 +11,17 @@ import {
 } from "../../store/categories/categories.select";
 
 import { CategoryContainer, Title } from "./category.styles";
-
+type CategoryRouteParams = {
+  category: string;
+};
+type Product = {
+  id: number;
+  // other product fields
+};
 const Category = () => {
-  const { category } = useParams();
+  const { category } = useParams<
+    keyof CategoryRouteParams
+  >() as CategoryRouteParams;
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectCategoriesIsLoading);
   const [products, setProducts] = useState(categoriesMap[category]);
@@ -30,7 +38,7 @@ const Category = () => {
       ) : (
         <CategoryContainer>
           {products &&
-            products.map((product) => (
+            products.map((product: Product) => (
               <ProductCard key={product.id} product={product} />
             ))}
         </CategoryContainer>
