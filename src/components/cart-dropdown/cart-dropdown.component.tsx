@@ -11,7 +11,9 @@ import {
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
-
+type Item = {
+  id: number;
+};
 const CartDropdown = () => {
   const dispatch = useDispatch();
   const isCartOpen = useSelector(selectIsCartOpen);
@@ -27,7 +29,9 @@ const CartDropdown = () => {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
+          cartItems.map((item: Item) => (
+            <CartItem key={item.id} cartItem={item} />
+          ))
         ) : (
           <EmptyMessage>Your cart is empty</EmptyMessage>
         )}
